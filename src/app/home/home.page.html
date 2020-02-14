@@ -1,20 +1,42 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Please stay connected with us!</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content padding>
+  <form #forma='ngForm' (ngSubmit)='onSubmit(forma)'>
+    <ion-spinner *ngIf='isLoading'></ion-spinner>
+    <p *ngIf='error' style="color: red;">
+      {{message}}
+    </p>
+    <ion-list>
+      <ion-item>
+        <ion-label position='floating'>E-mail</ion-label>
+        <ion-input placeholder='Enter your valid email' ngModel name='email' required email></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position='floating'>Password</ion-label>
+        <ion-input type='password' ngModel name='pass' minlength='7' required></ion-input>
+      </ion-item>
+      <ion-item *ngIf='!isLoginMode'>
+        <ion-label position='floating'>First name</ion-label>
+        <ion-input type='text' ngModel name='firstname' minlength='2' required></ion-input>
+      </ion-item>
+      <ion-item *ngIf='!isLoginMode'>
+        <ion-label position='floating'>Last name</ion-label>
+        <ion-input type='text' ngModel name='lastname' minlength='3' required></ion-input>
+      </ion-item>
+      <ion-item *ngIf='!isLoginMode'>
+        <ion-label position='floating'>Contact</ion-label>
+        <ion-input type='text' ngModel name='contact' minlength='7' required></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button color='primary' expand='block' type='submit' [disabled]='!forma.valid'>{{ isLoginMode===true ? ' login' : ' register me'}}</ion-button><br>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  </form>
+  
+  <ion-button color='primary' fill='clear' (click)='switchMode()'>switch to {{ isLoginMode===true ? ' register' : ' login'}}</ion-button>
+  
 </ion-content>

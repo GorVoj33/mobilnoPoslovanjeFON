@@ -1,3 +1,52 @@
 <ion-app>
+
+  <ion-menu side='start' content-id="content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>
+          Options
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+  <ion-content id="content">
+    <ion-list>
+  
+    <ion-menu-toggle>
+      <ion-button (click)='goToLikedVehicles()'>
+        <ion-icon name='checkbox' slot='start'></ion-icon>
+        <ion-label>Liked vehicles</ion-label>
+      </ion-button>
+    </ion-menu-toggle>
+    <ion-menu-toggle>
+      <ion-button (click)='goToVehicles()'>
+        <ion-icon name='briefcase' slot='start'></ion-icon>
+        <ion-label style="display: block;">Discover vehicles</ion-label>
+      </ion-button>
+    </ion-menu-toggle>
+    <ion-menu-toggle>
+      <!-- <ion-button> -->
+        <ion-button (click)='changeTheme()'>
+        <ion-icon name='moon' slot='start'></ion-icon>
+        <ion-label>Dark theme: <b>{{darkTheme ? 'ON' : 'OFF'}}</b></ion-label>
+        <!-- <ion-toggle color="primary" slot='end' (click)='changeTheme()'></ion-toggle> -->
+      </ion-button>
+      <!-- </ion-button> -->
+    </ion-menu-toggle>
+    <ion-menu-toggle >
+      <ion-button (click)='logout()' *ngIf='userLoaded'>
+        <ion-icon name='exit' slot='start'></ion-icon>
+        <ion-label>Logout</ion-label>
+      </ion-button>
+    </ion-menu-toggle>
+    <ion-menu-toggle >
+      <ion-button (click)='goToHome()' *ngIf='!userLoaded'>
+        <ion-icon name='exit' slot='start'></ion-icon>
+        <ion-label>Login/Register</ion-label>
+      </ion-button>
+    </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+  </ion-menu>
   <ion-router-outlet></ion-router-outlet>
 </ion-app>

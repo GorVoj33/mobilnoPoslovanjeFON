@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Create new offer</ion-title>
+    <ion-back-button defaultHref='/vehicles/tabs/offers' slot='start'></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <form #forma="ngForm" (ngSubmit)='onSubmitForm(forma)'>
+      <ion-col>
+        <ion-item>
+          <ion-label position='floating'>Model</ion-label>
+          <ion-input type='text' required ngModel name='model' #model></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label position='floating'>Manufacturer</ion-label>
+          <ion-input type='text' autocapitalize autocorrect autocomplete required ngModel name='manufacturer' #manufacturer></ion-input>
+        </ion-item>
+      </ion-col>
+        <ion-item>
+          <ion-label position='floating'>Production year</ion-label>
+          <ion-input type='number' required ngModel name='year' #year></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position='floating'>Price (eur)</ion-label>
+          <ion-input type='number' required ngModel name='price' #price></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position='floating'>Description</ion-label>
+          <ion-textarea rows='4' required ngModel name='desc' #desc></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label position='floating'>Available from</ion-label>
+          <ion-datetime min='2020-01-02' max='2021-03-01' required ngModel name='date' #date></ion-datetime>
+        </ion-item>
+        <!-- <ion-item>
+          <div>
+            <ion-img
+              
+              class='veh-img'
+              (click)='onChooseImg()'
+              [src]='chosenImg'></ion-img>
+              <ion-button
+              color='primary'
+              (click)='onChooseImg()'>
+              <ion-icon name='camera' slot='start'></ion-icon>
+              <ion-label>Select image</ion-label>
+              </ion-button>
+          </div>
+          
+        </ion-item> -->
+        <ion-button type='submit' color='primary' padding >Save</ion-button>
+      </form>   
+      
+
+      <!-- role='button' -->
+
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

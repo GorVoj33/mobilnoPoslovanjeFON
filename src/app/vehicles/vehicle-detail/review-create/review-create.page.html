@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    
+    
+    <ion-title>Add review for {{vehicle.modelName}} {{vehicle.manufacturer}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/vehicles/tabs/discover"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  
+</ion-header>
+<ion-content>
+  <form #forma='ngForm' (ngSubmit)='submitForm(forma)'>
+    <ion-col>
+      <ion-item>
+        <ion-label>Rate this offer</ion-label>
+        <ion-button (click)='showRateChooser()'>
+          <ion-icon name='star-outline'>   
+          </ion-icon>
+        </ion-button>
+        <ion-icon name="checkmark-outline" *ngIf='rate!==0'></ion-icon>   
+        
+      </ion-item>
+      <ion-item>
+        <ion-label>Enter comment</ion-label><br>
+        <ion-input type='text' required ngModel name='comment' #comment></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Enter estimated value</ion-label>
+        <ion-input type='number' required ngModel name='estvalue' #value></ion-input>
+      </ion-item>
+      <ion-button type='submit'>Save my review</ion-button>
+    </ion-col>
+  </form>
+
+</ion-content>
+
