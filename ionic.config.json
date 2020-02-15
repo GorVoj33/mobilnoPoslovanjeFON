@@ -1,5 +1,7 @@
 {
   "name": "VehiclesStore",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

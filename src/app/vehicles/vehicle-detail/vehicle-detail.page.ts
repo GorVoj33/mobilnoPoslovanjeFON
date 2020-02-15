@@ -3,6 +3,7 @@ import { Vehicle } from 'src/app/model/vehicle.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { BackendService } from 'src/app/service/backend.service';
+import { User } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-vehicle-detail',
@@ -11,7 +12,9 @@ import { BackendService } from 'src/app/service/backend.service';
 })
 export class VehicleDetailPage implements OnInit {
 
-  vehicle:Vehicle;
+  vehicle: Vehicle;
+  userLoggedIn = false;
+  user: User = null;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -34,10 +37,17 @@ export class VehicleDetailPage implements OnInit {
         //console.log('Vehicle: '+this.vehicle);
       }
     );
+    this.user = this.backend.getLoggedUser();
+    if (this.user) {
+      this.userLoggedIn = true;
+    }
   }
 
-  onAddReview(vehicle: Vehicle){
-    //this.router.navigate([`/vehicles/tabs/discover/add-review/${vehicle.id}`]);
+  onAddReview(vehicle: Vehicle) {
+    this.router.navigate([`/vehicles/${vehicle.id}/review-create`]);
+  }
+  goToAuth() {
+    this.router.navigate(['/home']);
   }
 
 }

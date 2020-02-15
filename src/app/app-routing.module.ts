@@ -8,6 +8,14 @@ const routes: Routes = [
     path: 'vehicles',
     loadChildren: () => import('./vehicles/vehicles.module').then( m => m.VehiclesPageModule)
   },
+  {
+    path: 'vehicles-reload',
+    loadChildren: () => import('./vehicles/vehicles.module').then( m => m.VehiclesPageModule)
+  },
+  {
+    path: 'my-reviews',
+    loadChildren: () => import('./my-reviews/my-reviews.module').then( m => m.MyReviewsPageModule)
+  },
 ];
 
 @NgModule({

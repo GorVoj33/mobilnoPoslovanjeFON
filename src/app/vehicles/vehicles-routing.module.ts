@@ -9,17 +9,19 @@ const routes: Routes = [
     component: VehiclesPage
   },
   {
-    path: ':vehicleID',
-    loadChildren: () => import('./vehicle-detail/vehicle-detail.module').then( m => m.VehicleDetailPageModule)
-  },
-  {
     path: 'vehicle-create',
     loadChildren: () => import('./vehicle-create/vehicle-create.module').then( m => m.VehicleCreatePageModule)
   },
   {
-    path: 'vehicle-edit',
+    path: 'vehicle-edit/:vehicleID/edit',
     loadChildren: () => import('./vehicle-edit/vehicle-edit.module').then( m => m.VehicleEditPageModule)
+  },
+  {
+    path: ':vehicleID',
+    loadChildren: () => import('./vehicle-detail/vehicle-detail.module').then( m => m.VehicleDetailPageModule)
   }
+  
+  
 ];
 
 @NgModule({

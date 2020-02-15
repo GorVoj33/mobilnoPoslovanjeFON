@@ -1,20 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController, AlertController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
 import { BackendService } from '../service/backend.service';
+import { format } from 'url';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnDestroy{
+  
 
   public isLoginMode = true;
   isLoading:boolean = false;
   error: boolean = true;
   message: string = '';
+  //form: NgForm;
   constructor(
     private backend: BackendService,
     private router: Router,
@@ -23,6 +26,7 @@ export class HomePage {
   ) { }
 
   async onSubmit(form: NgForm){
+    //this.form = form;
     var email = form.value.email;
     var password = form.value.pass;
     this.isLoading = true;
@@ -45,6 +49,7 @@ export class HomePage {
             buttons: ['OK']
           }
       );
+      form.reset();
       await alert.present();
       if(success) {
         this.router.navigate(['/vehicles']);
@@ -61,7 +66,7 @@ export class HomePage {
       }
       else {
         this.isLoading = false;
-        myMessage = 'Registration crashed, this email is taken, try with another one.';
+        myMessage = 'Registration failed, this email is taken, try with another one.';
         //alert('Invalid credentials.');
       }
       const alert = await this.alert.create(
@@ -79,8 +84,12 @@ export class HomePage {
     
     //console.log("Kredencijali: "+username+ "  "+password);
   }
-
+  ngOnDestroy(): void {
+    //this.form.reset();
+  }
   switchMode(){
     this.isLoginMode = !this.isLoginMode;
   }
+  
+
 }

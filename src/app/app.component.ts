@@ -23,7 +23,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
-    private backend: BackendService
+    public backend: BackendService
   ) {
     this.initializeApp();
   }
@@ -47,18 +47,19 @@ export class AppComponent {
   goToVehicles() {
     this.router.navigate(['/vehicles']);
   }
-  goToLikedVehicles() {
-    this.router.navigate(['/vehicles']);
+  goToReviewedVehicles() {
+    this.router.navigate(['/my-reviews']);
   }
   goToHome(){
     this.router.navigate(['/home']);
   }
   logout(){
-    this.user = this.backend.getLoggedUser();
-    if(this.user.email !== null) {
-      this.userLoaded = true;
-    }
-    console.log('Ulogovan: ');
-    console.log(this.user);
+    this.backend.logout();
+    // this.user = this.backend.getLoggedUser();
+    // if(this.user.email !== null) {
+    //   this.userLoaded = true;
+    // }
+    // console.log('Ulogovan: ');
+    // console.log(this.user);
   }
 }

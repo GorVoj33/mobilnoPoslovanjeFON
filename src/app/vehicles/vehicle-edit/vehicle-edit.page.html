@@ -1,9 +1,82 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>vehicle-edit</ion-title>
+    <ion-title>EDIT: {{vehicle.manufacturer}} {{vehicle.modelName}} </ion-title>
+    <ion-back-button defaultHref='/vehicles' slot='start'></ion-back-button>
+    <!-- <ion-back-button (click)='goToMain()' slot='start'></ion-back-button> -->
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+  
+  <ion-grid>
+    <ion-button color='red' style="background-color: red; color: white; display: block;" (click)="delete(vehicle)">I want to delete this offer</ion-button>
+    <ion-row>
+      
+      <ion-row>
+        <ion-col size='12' size-sm='8' offset-sm='2' text-center>
+          <ion-card>
+          <ion-img [src]='vehicle.imgUrl'></ion-img>
+        </ion-card>
+        </ion-col>
+      </ion-row>
+      <form #forma="ngForm" (ngSubmit)='onSubmitForm(forma)'>
+      <ion-col>
+        <ion-item>
+          <ion-label position='floating'>Model</ion-label>
+          <ion-text style="color: green"> <b>{{vehicle.modelName}}</b></ion-text>
+          <ion-input placeholder='Enter new value' type='text'  ngModel name='model' #model></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label position='floating'>Manufacturer</ion-label>
+          <ion-text style="color: green"> <b> {{vehicle.manufacturer}}</b></ion-text>
+          <ion-input placeholder='Enter new value' type='text' autocapitalize autocorrect autocomplete  ngModel name='manufacturer' #manufacturer></ion-input>
+        </ion-item>
+      </ion-col>
+        <ion-item>
+          <ion-label position='floating'>Production year</ion-label>
+          <ion-text style="color: green"> <b>{{vehicle.yearOfProduction}}</b></ion-text>
+          <ion-input placeholder='Enter new value' type='number'  ngModel name='year' #year></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position='floating'>Price (eur)</ion-label>
+          <ion-text style="color: green"> <b>{{vehicle.price}}</b></ion-text>
+          <ion-input placeholder='Enter new value' type='number'  ngModel name='price' #price></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position='floating'>Description</ion-label>
+          <ion-text style="color: green"> <b>{{vehicle.desc}}</b></ion-text>
+          <ion-textarea placeholder='Enter new value' rows='4' ngModel name='desc' #desc></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label position='floating'>Available from</ion-label>
+          <ion-text style="padding-top: 22px; color: green;"> <b>{{vehicle.availableFrom | date: 'shortDate'}}</b></ion-text>
+          <ion-datetime min='2020-01-02' max='2021-03-01'  ngModel name='date' #date></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <div>
+            <ion-img
+              
+              class='veh-img'
+              (click)='onChooseImg()'
+              [src]='chosenImg'></ion-img>
+              <ion-button
+              color='primary'
+              (click)='onChooseImg()'>
+              <ion-icon name='camera' slot='start'></ion-icon>
+              <ion-label>Select image</ion-label>
+              </ion-button>
+          </div>
+          
+        </ion-item>
+        <ion-button type='submit' color='primary' padding style="display: block;">Save</ion-button>
+      </form>   
+      
 
+      <!-- role='button' -->
+
+    </ion-row>
+  </ion-grid>
+  
 </ion-content>

@@ -13,9 +13,9 @@
     <ion-list>
   
     <ion-menu-toggle>
-      <ion-button (click)='goToLikedVehicles()'>
+      <ion-button (click)='goToReviewedVehicles()'>
         <ion-icon name='checkbox' slot='start'></ion-icon>
-        <ion-label>Liked vehicles</ion-label>
+        <ion-label>My (reviewed) offers</ion-label>
       </ion-button>
     </ion-menu-toggle>
     <ion-menu-toggle>
@@ -34,13 +34,13 @@
       <!-- </ion-button> -->
     </ion-menu-toggle>
     <ion-menu-toggle >
-      <ion-button (click)='logout()' *ngIf='userLoaded'>
+      <ion-button (click)='logout()' *ngIf='backend.userAuthenticated'>
         <ion-icon name='exit' slot='start'></ion-icon>
         <ion-label>Logout</ion-label>
       </ion-button>
     </ion-menu-toggle>
     <ion-menu-toggle >
-      <ion-button (click)='goToHome()' *ngIf='!userLoaded'>
+      <ion-button (click)='goToHome()' *ngIf='!backend.userAuthenticated'>
         <ion-icon name='exit' slot='start'></ion-icon>
         <ion-label>Login/Register</ion-label>
       </ion-button>

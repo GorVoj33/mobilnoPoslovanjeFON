@@ -12,6 +12,7 @@
 <ion-content padding>
   
     <ion-grid>
+      
       <ion-row>
         <ion-col size='12' size-sm='8' offset-sm='2' text-center>
           <ion-card>
@@ -19,7 +20,7 @@
         </ion-card>
         </ion-col>
       </ion-row>
-      
+
       <ion-row>  
           <ion-col>
             <!-- <ion-item text-center> -->
@@ -44,6 +45,7 @@
           <ion-item style="display: block;">
             <ion-text>Description: {{vehicle.desc}}</ion-text>
           </ion-item>
+      </ion-row>
           <ion-row>
             <ion-col>
 
@@ -63,22 +65,30 @@
           </ion-col>
 
           </ion-row>
-          
+          <ion-row>
           <ion-label><b>REVIEWS</b></ion-label>
-          <p *ngIf='vehicle.likes.length === 0'>No reviews added yet.</p>
-          <ion-card style="background-color: azure;">
-            <ion-list *ngIf='vehicle.likes.length > 0'>
-              <ion-item *ngFor='let l of vehicle.likes'>
-                <ion-label>{{l.creator.email}} ({{l.date | date: 'shortDate'})</ion-label>
-                <p>{{l.comment}}</p>
+          <p *ngIf='vehicle.reviews.length === 0'>No reviews added yet.</p>
+          
+            <ion-list *ngIf='vehicle.reviews.length > 0'>
+              <ion-item *ngFor='let l of vehicle.reviews'>
+                <ion-card style="background-color: azure;">
+                  <ion-label>{{l.creator.firstName}} {{l.creator.lastName}} </ion-label>
+                  <ion-label>RATE: <b>{{l.rate}} at: ( {{l.date | date: 'shortDate'}} ) </b></ion-label>
+                  <p><i>{{l.comment}}</i></p>
+                  <p>Estimated value: <b>{{l.estimatedPrice | currency: 'EUR'}}</b></p>
+                </ion-card>
               </ion-item>
             </ion-list>  
-          </ion-card>
+            <ion-button type='button' color='accent' (click)='goToAuth()' style="margin: 0 auto;
+            display: block;background-color: black;" *ngIf='!userLoggedIn'>
+              Login to add review
+            </ion-button>  
           <ion-button type='button' color='primary' (click)='onAddReview(vehicle)' style="margin: 0 auto;
-          display: block;">Add review 
-          <ion-icon name="thumbs-up-outline"></ion-icon></ion-button>        
-      </ion-row> 
+          display: block;" *ngIf='userLoggedIn'>Add review 
+          <ion-icon name="thumbs-up-outline"></ion-icon></ion-button>   
+             
       
+      </ion-row> 
     </ion-grid>
 </ion-content>
 
